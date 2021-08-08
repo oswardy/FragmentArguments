@@ -24,6 +24,22 @@ class AFragment : Fragment() {
         val binding: FragmentABinding = DataBindingUtil.inflate(inflater , R.layout.fragment_a, container, false)
 
 
+
+
+        binding.btnOk.setOnClickListener(){
+            val name: String = binding.tfName.text.toString()
+
+            //unsafe args passing
+            //val bundle:Bundle = bundleOf(Pair("personName",name))
+            //Navigation.findNavController(it).navigate(R.id.action_AFragment_to_BFragment,bundle)
+
+            //safe
+            val action = AFragmentDirections.actionAFragmentToBFragment(name)
+            Navigation.findNavController(it).navigate(action)
+            //or
+            //Navigation.findNavController(it).navigate(AFragmentDirections.actionAFragmentToBFragment(name))
+
+        }
         return binding.root
     }
 
